@@ -9,5 +9,5 @@ import lombok.Setter;
 public class EditBikeDTO {
     private String model;
     private String type;
-    private Float price_p_hour;
+    private Float pricePHour;
 }

@@ -9,5 +9,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EditStatusBikeDTO {
-    private BikeStatusUtil status_util;
+    private BikeStatusUtil statusUtil;
 }

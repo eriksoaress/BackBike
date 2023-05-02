@@ -24,7 +24,7 @@ public class BikeController {
         return bikeService.editBike(id, bike);
     }
 
-    @PutMapping("/status/{id}")
+    @PutMapping("{id}/status/")
     public BikeReturnDTO editStatusBike(@PathVariable Integer id, @RequestBody EditStatusBikeDTO bike){
         return bikeService.editStatusBike(id, bike);
     }

@@ -42,7 +42,7 @@ public class BikeService {
         if (bikeBD.isPresent()) {
             bikeBD.get().setModel(editBikeDTO.getModel());
             bikeBD.get().setType(editBikeDTO.getType());
-            bikeBD.get().setPricePHour(editBikeDTO.getPrice_p_hour());
+            bikeBD.get().setPricePHour(editBikeDTO.getPricePHour());
 
             Bike bike = bikeRepository.save(bikeBD.get());
             return BikeReturnDTO.convert(bike);
@@ -53,7 +53,7 @@ public class BikeService {
     public BikeReturnDTO editStatusBike(Integer id, EditStatusBikeDTO editStatusBikeDTO){
         Optional<Bike> bikeBD = bikeRepository.findById(id);
         if (bikeBD.isPresent()){
-            bikeBD.get().setStatusUtil(editStatusBikeDTO.getStatus_util());
+            bikeBD.get().setStatusUtil(editStatusBikeDTO.getStatusUtil());
 
             Bike bike = bikeRepository.save(bikeBD.get());
             return BikeReturnDTO.convert(bike);
