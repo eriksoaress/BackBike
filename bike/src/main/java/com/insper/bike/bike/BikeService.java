@@ -6,6 +6,8 @@ import com.insper.bike.bike.dto.SaveBikeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class BikeService {
     @Autowired
@@ -23,15 +25,17 @@ public class BikeService {
         return BikeReturnDTO.covert(bike);
     }
 
-    public BikeReturnDTO editBike(String identifier, EditBikeDTO editBikeDTO){
-        Bike bikeBD = bikeRepository.findByBikeIdentifier(identifier);
+    public BikeReturnDTO editBike(Integer id, EditBikeDTO editBikeDTO){
+        Optional<Bike> bikeBD = bikeRepository.findById(id);
+        if (bikeBD.isPresent()) {
+            bikeBD.get().setModel(editBikeDTO.getModel());
+            bikeBD.get().setType(editBikeDTO.getType());
+            bikeBD.get().setPrice_p_hour(editBikeDTO.getPrice_p_hour());
 
-        bikeBD.setModel(editBikeDTO.getModel());
-        bikeBD.setType(editBikeDTO.getType());
-        bikeBD.setPrice_p_hour(editBikeDTO.getPrice_p_hour());
-
-        Bike bike = bikeRepository.save(bikeBD);
-        return BikeReturnDTO.covert(bike);
+            Bike bike = bikeRepository.save(bikeBD.get());
+            return BikeReturnDTO.covert(bike);
+        }
+        return null;
 
     }
 

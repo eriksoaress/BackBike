@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface BikeRepository extends JpaRepository<Bike,Integer> {
-    Bike findByBikeIdentifier(String identifier);
+    Bike findByIdentifier(String identifier);
 }
