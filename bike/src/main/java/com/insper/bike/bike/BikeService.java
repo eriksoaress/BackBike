@@ -2,6 +2,7 @@ package com.insper.bike.bike;
 
 import com.insper.bike.bike.dto.BikeReturnDTO;
 import com.insper.bike.bike.dto.EditBikeDTO;
+import com.insper.bike.bike.dto.EditStatusBikeDTO;
 import com.insper.bike.bike.dto.SaveBikeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,18 @@ public class BikeService {
             return BikeReturnDTO.covert(bike);
         }
         return null;
-
     }
+
+    public BikeReturnDTO editStatusBike(Integer id, EditStatusBikeDTO editStatusBikeDTO){
+        Optional<Bike> bikeBD = bikeRepository.findById(id);
+        if (bikeBD.isPresent()){
+            bikeBD.get().setStatus_util(editStatusBikeDTO.getStatus_util());
+
+            Bike bike = bikeRepository.save(bikeBD.get());
+            return BikeReturnDTO.covert(bike);
+        }
+        return null;
+    }
+
 
 }
