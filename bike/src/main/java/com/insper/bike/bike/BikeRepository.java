@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface BikeRepository extends JpaRepository<Bike,Integer> {
     Page<Bike> findByStatusUtil(BikeStatusUtil statusUtil, Pageable pageable);
+    Bike findByIdentifier(String identifier);
 }

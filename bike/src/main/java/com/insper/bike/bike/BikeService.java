@@ -1,11 +1,15 @@
 package com.insper.bike.bike;
 
 import com.insper.bike.bike.dto.BikeReturnDTO;
+import com.insper.bike.bike.dto.EditBikeDTO;
+import com.insper.bike.bike.dto.EditStatusBikeDTO;
 import com.insper.bike.bike.dto.SaveBikeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class BikeService {
@@ -31,4 +35,31 @@ public class BikeService {
         }
         Page<Bike> bikes = bikeRepository.findAll(pageable);
         return bikes.map(bike -> BikeReturnDTO.convert(bike));
-    }}
+    }
+
+    public BikeReturnDTO editBike(Integer id, EditBikeDTO editBikeDTO){
+        Optional<Bike> bikeBD = bikeRepository.findById(id);
+        if (bikeBD.isPresent()) {
+            bikeBD.get().setModel(editBikeDTO.getModel());
+            bikeBD.get().setType(editBikeDTO.getType());
+            bikeBD.get().setPricePHour(editBikeDTO.getPrice_p_hour());
+
+            Bike bike = bikeRepository.save(bikeBD.get());
+            return BikeReturnDTO.convert(bike);
+        }
+        return null;
+    }
+
+    public BikeReturnDTO editStatusBike(Integer id, EditStatusBikeDTO editStatusBikeDTO){
+        Optional<Bike> bikeBD = bikeRepository.findById(id);
+        if (bikeBD.isPresent()){
+            bikeBD.get().setStatusUtil(editStatusBikeDTO.getStatus_util());
+
+            Bike bike = bikeRepository.save(bikeBD.get());
+            return BikeReturnDTO.convert(bike);
+        }
+        return null;
+    }
+
+
+}

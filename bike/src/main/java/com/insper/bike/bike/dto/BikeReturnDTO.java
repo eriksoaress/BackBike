@@ -16,6 +16,7 @@ public class BikeReturnDTO {
     private BikeStatusUtil statusUtil;
     private BikeStatusOcupation statusOcupation;
 
+
     public static BikeReturnDTO convert(Bike bike) {
         BikeReturnDTO bikeReturnDTO = new BikeReturnDTO();
         bikeReturnDTO.setModel(bike.getModel());
