@@ -4,6 +4,7 @@ import com.insper.bike.bike.dto.BikeReturnDTO;
 import com.insper.bike.bike.dto.EditBikeDTO;
 import com.insper.bike.bike.dto.EditStatusBikeDTO;
 import com.insper.bike.bike.dto.SaveBikeDTO;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,15 +25,19 @@ public class BikeController {
         return bikeService.editBike(id, bike);
     }
 
-    @PutMapping("{id}/status/")
+    @PutMapping("/{id}/status")
     public BikeReturnDTO editStatusBike(@PathVariable Integer id, @RequestBody EditStatusBikeDTO bike){
         return bikeService.editStatusBike(id, bike);
     }
 
+    @GetMapping("/available")
+    public BikeReturnDTO getAvailableBike(){
+        return bikeService.getAvailableBike();
+    }
 
     @GetMapping
     public Page<BikeReturnDTO> listBikes(@RequestParam(required = false) BikeStatusUtil bikeStatusUtil, Pageable pageable){
-        return  bikeService.listBikes(bikeStatusUtil,pageable);
+        return bikeService.listBikes(bikeStatusUtil,pageable);
     }
 
 }
