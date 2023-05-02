@@ -1,11 +1,30 @@
 package com.insper.bike.bike;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Bike {
-    private String modelo;
-    private String tipo;
-    private Float preco_por_hora;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String identifier = UUID.randomUUID().toString();
+    private String model;
+    private String type;
+    private Float price_p_hour;
+
+    private BikeStatusUtil status_util;
+
+    private BikeStatusOcupation status_ocupation;
 
 }
