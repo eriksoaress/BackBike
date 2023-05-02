@@ -74,4 +74,10 @@ public class BikeService {
         return null;
     }
 
+    public void deleteBike(Integer id){
+        Bike bikeBD = bikeRepository.getById(id);
+        if (bikeBD != null){
+            bikeRepository.delete(bikeBD);
+        }
+    }
 }

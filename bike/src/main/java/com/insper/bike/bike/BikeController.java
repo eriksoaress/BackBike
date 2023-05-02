@@ -40,4 +40,8 @@ public class BikeController {
         return bikeService.listBikes(bikeStatusUtil,pageable);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteBike(@PathVariable Integer id){
+        bikeService.deleteBike(id);
+    }
 }
