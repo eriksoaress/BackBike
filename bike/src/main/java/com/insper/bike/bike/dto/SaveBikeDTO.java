@@ -8,5 +8,5 @@ import lombok.Setter;
 public class SaveBikeDTO {
     private String model;
     private String type;
-    private Float price_p_hour;
+    private Float pricePHour;
 }

@@ -21,10 +21,10 @@ public class Bike {
     private String identifier = UUID.randomUUID().toString();
     private String model;
     private String type;
-    private Float price_p_hour;
+    private Float pricePHour;
 
-    private BikeStatusUtil status_util;
+    private BikeStatusUtil statusUtil;
 
-    private BikeStatusOcupation status_ocupation;
+    private BikeStatusOcupation statusOcupation;
 
 }
