@@ -1,10 +1,7 @@
 package com.insper.bike.bike.dto;
 
 import com.insper.bike.bike.Bike;
-<<<<<<< HEAD
-=======
 import com.insper.bike.bike.BikeRepository;
->>>>>>> ade6feec05e0f98ea3e250972ec701feca7e6ded
 import com.insper.bike.bike.BikeStatusOcupation;
 import com.insper.bike.bike.BikeStatusUtil;
 import lombok.Getter;
