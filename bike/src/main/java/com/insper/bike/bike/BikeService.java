@@ -51,7 +51,8 @@ public class BikeService {
     public BikeReturnDTO editStatusBike(Integer id, EditStatusBikeDTO editStatusBikeDTO){
         Optional<Bike> bikeBD = bikeRepository.findById(id);
         if (bikeBD.isPresent()){
-            bikeBD.get().setStatusUtil(editStatusBikeDTO.getStatusUtil());
+            if (editStatusBikeDTO.getStatusUtil() != null){bikeBD.get().setStatusUtil(editStatusBikeDTO.getStatusUtil());}
+            if (editStatusBikeDTO.getStatusOcupation() != null){bikeBD.get().setStatusOcupation(editStatusBikeDTO.getStatusOcupation());}
 
             Bike bike = bikeRepository.save(bikeBD.get());
             return BikeReturnDTO.convert(bike);
