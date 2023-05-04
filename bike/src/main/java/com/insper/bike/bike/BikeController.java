@@ -1,9 +1,6 @@
 package com.insper.bike.bike;
 
-import com.insper.bike.bike.dto.BikeReturnDTO;
-import com.insper.bike.bike.dto.EditBikeDTO;
-import com.insper.bike.bike.dto.EditStatusBikeDTO;
-import com.insper.bike.bike.dto.SaveBikeDTO;
+import com.insper.bike.bike.dto.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +28,7 @@ public class BikeController {
     }
 
     @GetMapping("/available")
-    public BikeReturnDTO getAvailableBike(){
+    public BikeApiIntegrationReturnDTO getAvailableBike(){
         return bikeService.getAvailableBike();
     }
 

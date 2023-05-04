@@ -1,9 +1,6 @@
 package com.insper.bike.bike;
 
-import com.insper.bike.bike.dto.BikeReturnDTO;
-import com.insper.bike.bike.dto.EditBikeDTO;
-import com.insper.bike.bike.dto.EditStatusBikeDTO;
-import com.insper.bike.bike.dto.SaveBikeDTO;
+import com.insper.bike.bike.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -62,12 +59,12 @@ public class BikeService {
         return null;
     }
 
-    public BikeReturnDTO getAvailableBike(){
+    public BikeApiIntegrationReturnDTO getAvailableBike(){
         List<Bike> bikes = bikeRepository.findAll();
         if (bikes.size() > 0){
             for (Bike bike: bikes){
                 if (bike.getStatusUtil().equals(BikeStatusUtil.WORKING)  & bike.getStatusOcupation().equals(BikeStatusOcupation.AVAILABLE)){
-                    return BikeReturnDTO.convert(bike);
+                    return BikeApiIntegrationReturnDTO.convert(bike);
                 }
             }
         }
@@ -75,9 +72,7 @@ public class BikeService {
     }
 
     public void deleteBike(Integer id){
-        Bike bikeBD = bikeRepository.getById(id);
-        if (bikeBD != null){
-            bikeRepository.delete(bikeBD);
-        }
+        Optional<Bike> bikeBD = bikeRepository.findById(id);
+        bikeBD.ifPresent(bike -> bikeRepository.delete(bike));
     }
 }
