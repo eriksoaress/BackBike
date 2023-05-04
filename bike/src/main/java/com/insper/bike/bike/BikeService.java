@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,6 +58,18 @@ public class BikeService {
 
             Bike bike = bikeRepository.save(bikeBD.get());
             return BikeReturnDTO.convert(bike);
+        }
+        return null;
+    }
+
+    public BikeReturnDTO getAvailableBike(){
+        List<Bike> bikes = bikeRepository.findAll();
+        if (bikes.size() > 0){
+            for (Bike bike: bikes){
+                if (bike.getStatusUtil().equals(BikeStatusUtil.WORKING)  & bike.getStatusOcupation().equals(BikeStatusOcupation.AVAILABLE)){
+                    return BikeReturnDTO.convert(bike);
+                }
+            }
         }
         return null;
     }
