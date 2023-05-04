@@ -1,6 +1,6 @@
 package com.insper.bike.bike.dto;
 
-import com.insper.bike.bike.BikeStatusOcupation;
+import com.insper.bike.bike.BikeStatusOccupation;
 import com.insper.bike.bike.BikeStatusUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,5 +10,5 @@ import lombok.Setter;
 @Setter
 public class EditStatusBikeDTO {
     private BikeStatusUtil statusUtil;
-    private BikeStatusOcupation statusOcupation;
+    private BikeStatusOccupation statusOccupation;
 }

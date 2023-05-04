@@ -22,9 +22,14 @@ public class BikeController {
         return bikeService.editBike(id, bike);
     }
 
-    @PutMapping("/{id}/status")
-    public BikeReturnDTO editStatusBike(@PathVariable Integer id, @RequestBody EditStatusBikeDTO bike){
-        return bikeService.editStatusBike(id, bike);
+    @PutMapping("/{id}/utility")
+    public BikeReturnDTO editStatusUtilBike(@PathVariable Integer id){
+        return bikeService.editStatusUtilBike(id);
+    }
+
+    @PutMapping("/{id}/occupation")
+    public BikeReturnDTO editStatusOcupBike(@PathVariable Integer id){
+        return bikeService.editStatusOcupBike(id);
     }
 
     @GetMapping("/available")

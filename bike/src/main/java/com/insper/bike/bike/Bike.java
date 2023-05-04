@@ -25,6 +25,6 @@ public class Bike {
 
     private BikeStatusUtil statusUtil;
 
-    private BikeStatusOcupation statusOcupation;
+    private BikeStatusOccupation statusOccupation;
 
 }

@@ -20,7 +20,7 @@ public class BikeService {
         bike.setModel(saveBikeDTO.getModel());
         bike.setType(saveBikeDTO.getType());
         bike.setPricePHour(saveBikeDTO.getPricePHour());
-        bike.setStatusOcupation(BikeStatusOcupation.AVAILABLE);
+        bike.setStatusOccupation(BikeStatusOccupation.AVAILABLE);
         bike.setStatusUtil(BikeStatusUtil.WORKING);
         bikeRepository.save(bike);
         return BikeReturnDTO.convert(bike);
@@ -48,12 +48,28 @@ public class BikeService {
         return null;
     }
 
-    public BikeReturnDTO editStatusBike(Integer id, EditStatusBikeDTO editStatusBikeDTO){
+    public BikeReturnDTO editStatusUtilBike(Integer id){
         Optional<Bike> bikeBD = bikeRepository.findById(id);
         if (bikeBD.isPresent()){
-            if (editStatusBikeDTO.getStatusUtil() != null){bikeBD.get().setStatusUtil(editStatusBikeDTO.getStatusUtil());}
-            if (editStatusBikeDTO.getStatusOcupation() != null){bikeBD.get().setStatusOcupation(editStatusBikeDTO.getStatusOcupation());}
+            if (bikeBD.get().getStatusUtil().equals(BikeStatusUtil.MAINTENANCE)){
+                bikeBD.get().setStatusUtil(BikeStatusUtil.WORKING);
+            }else {
+                bikeBD.get().setStatusUtil(BikeStatusUtil.MAINTENANCE);
+            }
+            Bike bike = bikeRepository.save(bikeBD.get());
+            return BikeReturnDTO.convert(bike);
+        }
+        return null;
+    }
 
+    public BikeReturnDTO editStatusOcupBike(Integer id){
+        Optional<Bike> bikeBD = bikeRepository.findById(id);
+        if (bikeBD.isPresent()){
+            if (bikeBD.get().getStatusOccupation().equals(BikeStatusOccupation.AVAILABLE)){
+                bikeBD.get().setStatusOccupation(BikeStatusOccupation.UNAVAILABLE);
+            }else {
+                bikeBD.get().setStatusOccupation(BikeStatusOccupation.AVAILABLE);
+            }
             Bike bike = bikeRepository.save(bikeBD.get());
             return BikeReturnDTO.convert(bike);
         }
@@ -64,7 +80,7 @@ public class BikeService {
         List<Bike> bikes = bikeRepository.findAll();
         if (bikes.size() > 0){
             for (Bike bike: bikes){
-                if (bike.getStatusUtil().equals(BikeStatusUtil.WORKING)  & bike.getStatusOcupation().equals(BikeStatusOcupation.AVAILABLE)){
+                if (bike.getStatusUtil().equals(BikeStatusUtil.WORKING)  & bike.getStatusOccupation().equals(BikeStatusOccupation.AVAILABLE)){
                     return BikeApiIntegrationReturnDTO.convert(bike);
                 }
             }
