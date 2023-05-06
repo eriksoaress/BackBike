@@ -7,14 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BikeApiIntegrationReturnDTO {
-    private String identifier;
+    private Integer id;
     private Float pricePHour;
     private String model;
     private String type;
 
     public static BikeApiIntegrationReturnDTO convert(Bike bike){
         BikeApiIntegrationReturnDTO bikeApiIntegrationReturnDTO = new BikeApiIntegrationReturnDTO();
-        bikeApiIntegrationReturnDTO.identifier = bike.getIdentifier();
+        bikeApiIntegrationReturnDTO.id = bike.getId();
         bikeApiIntegrationReturnDTO.pricePHour = bike.getPricePHour();
         bikeApiIntegrationReturnDTO.model = bike.getModel();
         bikeApiIntegrationReturnDTO.type = bike.getType();

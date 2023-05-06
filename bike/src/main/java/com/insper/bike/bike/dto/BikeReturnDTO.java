@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BikeReturnDTO {
+    private Integer id;
     private String model;
     private String type;
     private Float pricePHour;
@@ -19,6 +20,7 @@ public class BikeReturnDTO {
 
     public static BikeReturnDTO convert(Bike bike) {
         BikeReturnDTO bikeReturnDTO = new BikeReturnDTO();
+        bikeReturnDTO.setId(bike.getId());
         bikeReturnDTO.setModel(bike.getModel());
         bikeReturnDTO.setType(bike.getType());
         bikeReturnDTO.setPricePHour(bike.getPricePHour());
