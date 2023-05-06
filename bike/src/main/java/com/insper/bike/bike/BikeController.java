@@ -38,7 +38,7 @@ public class BikeController {
     }
 
     @GetMapping
-    public Page<BikeReturnDTO> listBikes(@RequestParam(required = false) BikeStatusUtil bikeStatusUtil, Pageable pageable){
+    public Page<BikeReturnDTO> listBikes(@RequestParam(name = "status",required = false) BikeStatusUtil bikeStatusUtil, Pageable pageable){
         return bikeService.listBikes(bikeStatusUtil,pageable);
     }
 
