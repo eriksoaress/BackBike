@@ -1,5 +1,6 @@
 package com.insper.bike.bike;
 
+import com.insper.bike.BikeApplication;
 import com.insper.bike.bike.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -81,7 +82,9 @@ public class BikeService {
         if (bikes.size() > 0){
             for (Bike bike: bikes){
                 if (bike.getStatusUtil().equals(BikeStatusUtil.WORKING)  & bike.getStatusOccupation().equals(BikeStatusOccupation.AVAILABLE)){
-                    return BikeApiIntegrationReturnDTO.convert(bike);
+                    bike.setStatusOccupation(BikeStatusOccupation.UNAVAILABLE);
+                    Bike bike2 = bikeRepository.save(bike);
+                    return BikeApiIntegrationReturnDTO.convert(bike2);
                 }
             }
         }
