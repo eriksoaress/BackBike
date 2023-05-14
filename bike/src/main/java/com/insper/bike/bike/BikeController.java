@@ -37,6 +37,11 @@ public class BikeController {
         return bikeService.getAvailableBike();
     }
 
+    @GetMapping("/{id}")
+    public BikeReturnDTO getBike(@PathVariable Integer id){
+        return bikeService.getBike(id);
+    }
+
     @GetMapping
     public Page<BikeReturnDTO> listBikes(@RequestParam(name = "status",required = false) BikeStatusUtil bikeStatusUtil, Pageable pageable){
         return bikeService.listBikes(bikeStatusUtil,pageable);

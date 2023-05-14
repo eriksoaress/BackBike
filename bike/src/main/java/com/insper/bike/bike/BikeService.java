@@ -62,6 +62,11 @@ public class BikeService {
         return null;
     }
 
+    public BikeReturnDTO getBike(Integer id){
+        Optional <Bike> bikeBD = bikeRepository.findById(id);
+        Bike bike = bikeBD.get();
+        return BikeReturnDTO.convert(bike);
+    }
     public BikeReturnDTO editStatusOcupBike(Integer id){
         Optional<Bike> bikeBD = bikeRepository.findById(id);
         if (bikeBD.isPresent()){
